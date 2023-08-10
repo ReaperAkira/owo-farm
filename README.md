@@ -55,12 +55,18 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
 ```
 {
     "settings": {
-        "huntandbattle": "", true or false
-        "banbypass": "", true or false
-        "discordrpc": "", true or false
-        "pray": "", true or false
-        "extratoken": "", true or false
-        "autoquest": "", true or false
+      "prefix":               "o",
+      "owo":                  "true or false",
+      "pray":                 "true or false",
+      "curse":                "true or false",
+      "hunt":                 "true or false",
+      "battle":               "true or false",
+      "socket":               "true or false",
+      "banbypass":            "true or false",
+      "autoquest":            "true or false",
+      "extratoken":           "true or false",
+      "randommess":           "true or false",
+      "discordrpc":           "true or false",
         "inventory": {
             "inventorycheck": "", true or false
             "gemcheck": "", true or false
@@ -116,6 +122,21 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
         "userid":"", extra token user id
         "channelid":"", channel id for extra token
         "owodmchannelid":"" extra token owo bot dm channel id
+    },
+    "timedelay": { 
+    "   (▀̿Ĺ̯▀̿ ̿)"               :"sec",
+        "owo"                 :20,
+        "huntandbattle"       :20,
+        "coinflip"            :20,
+        "slots"               :23,
+    "   ヾ(⌐■_■)♪∐"           :"min",
+        "pray"                :5.5,
+        "curse"               :5.5,
+        "animals"             :10,
+        "upgradeautohunt"     :10,
+        "autoclose"           :"true or false",
+        "timeautoclose"       :10   
+    
     }
 }
 
