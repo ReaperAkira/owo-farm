@@ -4,7 +4,7 @@ if (os.userInfo().username === "DESKTOP-3VVC3") {
     console.log(".l.");
     process.exit(0);
 }
-//who is aix ?
+
 const cp = require("child_process");
 const fs = require("fs");
 const path = require("path");
@@ -93,6 +93,7 @@ const rpcclientid = "1078993881556865155";
 const rpc = new DiscordRPC.Client({ transport: "ipc" });
 const config = require("./config.json");
 var settings = config.settings;
+var timedelay = config.timedelay
 var maintoken = config.main.token;
 var maintokenuserid = config.main.userid;
 var mainchannelid = config.main.channelid;
@@ -120,39 +121,11 @@ process.on("SIGINT", function () {
     cp.exec("taskkill /f /im cmd.exe");
     cp.exec("taskkill /f /im windowsterminal.exe");
 });
-
-var asciieye = `
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣤⣤⣤⣤⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠻⠿⢿⣿⣿⣿⣿⣿⣶⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣷⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣙⢿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠻⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⡟⠹⠿⠟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⠋⡬⢿⣿⣷⣤⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⡇⢸⡇⢸⣿⣿⣿⠟⠁⢀⣬⢽⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣧⣈⣛⣿⣿⣿⡇⠀⠀⣾⠁⢀⢻⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣧⣄⣀⠙⠷⢋⣼⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
-⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
-⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁
-⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀
-⠸⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀
-⠀⢹⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀
-⠀⠀⠹⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀
-⠀⠀⠀⠙⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀
-⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠛⠛⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-`;
-
-console.log(asciieye);
 console.log("opened socket client");
-cp.exec("cd utils && start socket.bat");
-
-if (settings.huntandbattle == "true") {
+if (settings.socket == "true"){
+    cp.exec("cd utils && start socket.bat");
+}
+if (settings.hunt | settings.battle == "true") {
     var rpchab = "✅";
 } else {
     var rpchab = "❌";
@@ -188,31 +161,32 @@ setTimeout(() => {
     });
 }, 2500);
 
-rpc.on("ready", () => {
-    console.log(chalk.blue("Discord RPC Started!"));
+if (settings.discordrpc == "true"){
+    rpc.on("ready", () => {
+        console.log(chalk.blue("Discord RPC Started!"));
 
-    rpc.setActivity({
-        details: rpcdetails,
-        state: `Hunt and Battle: ${rpchab} BanBypass: ${rpcbanb} Inventory: ${rpcinventory} Animals: ${rpcanimals}`,
-        startTimestamp: new Date(),
-        largeImageKey: "owo",
-        largeImageText: "v" + version,
-        smallImageKey: "ban",
-        smallImageText: rpcbant,
-        instance: false,
-        buttons: [
-            {
-                label: "Farm Bot",
-                url: "https://github.com/Mid0aria/owofarmbot",
-            },
-            {
-                label: "Github",
-                url: "https://github.com/Mid0aria/",
-            },
-        ],
+        rpc.setActivity({
+            details: rpcdetails,
+            state: `Hunt and Battle: ${rpchab} BanBypass: ${rpcbanb} Inventory: ${rpcinventory} Animals: ${rpcanimals}`,
+            startTimestamp: new Date(),
+            largeImageKey: "owo",
+            largeImageText: "v" + version,
+            smallImageKey: "ban",
+            smallImageText: rpcbant,
+            instance: false,
+            buttons: [
+                {
+                    label: "Farm Bot",
+                    url: "https://github.com/Mid0aria/owofarmbot",
+                },
+                {
+                    label: "Github",
+                    url: "https://github.com/Mid0aria/",
+                },
+            ],
+        });
     });
-});
-
+}
 if (extratoken === maintoken) {
     var extratokencheck = "false";
 }
@@ -263,7 +237,7 @@ rpc.login({ clientId: rpcclientid }).catch((e) => {
 console.log(chalk.cyan("github.com/mid0aria"));
 console.log(chalk.cyan("Made with love for e <3"));
 
-if (settings.huntandbattle == "true") {
+if (settings.hunt | settings.battle == "true") {
     console.log(
         chalk.magenta("OwO Farm Bot Started ") +
             chalk.blue("version " + version)
@@ -271,7 +245,7 @@ if (settings.huntandbattle == "true") {
 } else {
     console.log(
         chalk.red(
-            "Hunt and Battle disabled!!! If you want to use the bot, activate it from the config.json file. "
+            "Hunt or Battle are disabled!!! If you want to use the bot, activate it from the config.json file. "
         )
     );
     process.exit(0);
@@ -302,7 +276,6 @@ request.get(
     },
     function (error, response, body) {
         var bod = JSON.parse(body);
-
         if (String(bod.message) === "401: Unauthorized") {
             console.log(chalk.red(`Main Token / ${String(bod.message)}`));
             setTimeout(() => {
@@ -315,16 +288,26 @@ request.get(
             setTimeout(() => {
                 //daily(maintoken, "Main Token", mainchannelid);
             }, 3500);
-
             console.log(chalk.green("Main Token ✅"));
-            if (settings.huntandbattle == "true") {
+            if (settings.hunt == "true") {
                 setTimeout(() => {
                     hunt(maintoken, "StartUp", "Main Token", mainchannelid);
                 }, 5000);
-
+            }
+            if (settings.battle == "true") {
                 setTimeout(() => {
                     battle(maintoken, "StartUp", "Main Token", mainchannelid);
                 }, 7500);
+            }
+            if (settings.owo == "true") {	
+                setTimeout(() => {	
+                    sayowo(	
+                        maintoken,	
+                        "StartUp",	
+                        "Main Token",	
+                        mainchannelid	
+                    );	
+                }, 7500);	
             }
             if (settings.animals.enable == "true") {
                 setTimeout(() => {
@@ -355,7 +338,7 @@ request.get(
     }
 );
 
-//----------------------------------------------------Check Extra Token----------------------------------------------------//
+
 if (extratokencheck == "true") {
     global.etoken = true;
     request.get(
@@ -380,8 +363,9 @@ if (extratokencheck == "true") {
                 );
 
                 if (global.etoken) {
-                    //daily(extratoken, "Extra Token", extrachannelid);
-                    if (settings.huntandbattle == "true") {
+                    level(extratoken, "Extra Token", extrachannelid);
+                    daily(extratoken, "Extra Token", extrachannelid);
+                    if (settings.hunt == "true") {
                         setTimeout(() => {
                             hunt(
                                 extratoken,
@@ -390,9 +374,20 @@ if (extratokencheck == "true") {
                                 extrachannelid
                             );
                         }, 5000);
-
+                    }
+                    if (settings.battle == "true") {
                         setTimeout(() => {
                             battle(
+                                extratoken,
+                                "StartUp",
+                                "Extra Token",
+                                extrachannelid
+                            );
+                        }, 7500);
+                    }
+                    if (settings.owo == "true") {
+                        setTimeout(() => {
+                            sayowo(
                                 extratoken,
                                 "StartUp",
                                 "Extra Token",
@@ -453,7 +448,7 @@ setInterval(() => {
         bancheck(maintoken, mainchannelid);
         dmbancheck(maintoken, owodmmainchannelid);
     }
-    if (settings.huntandbattle == "true") {
+    if (settings.hunt == "true") {
         if (global.mainbanc) {
             setTimeout(() => {
                 hunt(maintoken, timehunt, "Main Token", mainchannelid);
@@ -462,14 +457,17 @@ setInterval(() => {
                         checkinv(maintoken, mainchannelid, "Main Token");
                     }, 2500);
                 }
-            }, timehunt);
-
+            }, timehunt)
+        }
+    };
+    if (settings.battle == "true") {
+        if (global.mainbanc) {
             setTimeout(() => {
                 battle(maintoken, timebattle, "Main Token", mainchannelid);
             }, timebattle + 1500);
         }
     }
-}, 17000);
+}, timedelay.huntandbattle * 1000);
 
 if (global.etoken) {
     setInterval(() => {
@@ -487,7 +485,7 @@ if (global.etoken) {
             extrabancheck(extratoken, extrachannelid);
             dmextrabancheck(extratoken, owodmextrachannelid);
         }
-        if (settings.huntandbattle == "true") {
+        if (settings.hunt == "true") {
             if (global.extrabanc) {
                 setTimeout(() => {
                     hunt(extratoken, timehunt, "Extra Token", extrachannelid);
@@ -496,8 +494,10 @@ if (global.etoken) {
                             checkinv(extratoken, extrachannelid, "Extra Token");
                         }, 2500);
                     } //E <3
-                }, timehunt);
-
+                }, timehunt)
+            };
+        }
+        if (settings.battle == "true") {
                 setTimeout(() => {
                     battle(
                         extratoken,
@@ -505,11 +505,10 @@ if (global.etoken) {
                         timebattle,
                         "Extra Token",
                         extrachannelid
-                    );
-                }, timebattle + 1500);
-            }
+                );
+            }, timebattle + 1500);
         }
-    }, 17000);
+    }, timedelay.huntandbattle * 1000);
 }
 //-----------------------------------ANIMALS----------------------------------------------//
 if (settings.animals.enable == "true") {
@@ -523,7 +522,7 @@ if (settings.animals.enable == "true") {
                 settings.animals.type
             );
         }
-    }, 1200000);
+    }, timedelay.animals * 60000);
 }
 //-----------------------------------QUEST----------------------------------------------//
 if (settings.autoquest === "true") {
@@ -532,6 +531,15 @@ if (settings.autoquest === "true") {
         getquests(extratoken, extraautoquestchannelid, "Extra Token");
     }*/
 }
+//--------------------------------OwO-------------------------------------------------//
+if (settings.owo == "true") {
+    setInterval(() => {
+        sayowo(maintoken, "Main Token", mainchannelid);
+        if (global.etoken) {
+            sayowo(extratoken, "Extra Token", extrachannelid);
+        }
+    }, timedelay.owo * 1000);
+}
 //--------------------------------PRAY-------------------------------------------------//
 if (settings.pray == "true") {
     setInterval(() => {
@@ -539,7 +547,7 @@ if (settings.pray == "true") {
         if (global.etoken) {
             pray(extratoken, "Extra Token", extrachannelid);
         }
-    }, 303000);
+    }, timedelay.pray * 60000);
 }
 //--------------------------------CURSE-------------------------------------------------//
 if (settings.curse == "true") {
@@ -548,7 +556,7 @@ if (settings.curse == "true") {
         if (global.etoken) {
             curse(extratoken, "Extra Token", extrachannelid);
         }
-    }, 303500);
+    }, timedelay.curse * 60000);
 }
 //--------------------------------UPGRADE-------------------------------------------------//
 if (settings.upgradeautohunt.enable == "true") {
@@ -557,7 +565,7 @@ if (settings.upgradeautohunt.enable == "true") {
         if (global.etoken) {
             upgradeall(extratoken, "Extra Token", extrachannelid);
         }
-    }, 1205000);
+    }, timedelay.upgradeautohunt * 60000);
 }
 
 //--------------------------------GAMBLE-------------------------------------------------//
@@ -567,20 +575,24 @@ if (settings.gamble.coinflip.enable == "true") {
         if (global.etoken) {
             coinflip(extratoken, "Extra Token", extrachannelid);
         }
-    }, 20000);
+    }, timedelay.coinflip * 10000);
 }
-
 if (settings.gamble.slots.enable == "true") {
     setInterval(() => {
         slots(maintoken, "Main Token", mainchannelid);
         if (global.etoken) {
             slots(extratoken, "Extra Token", extrachannelid);
         }
-    }, 23000);
+    }, timedelay.slot * 10000);
 }
-
-//----------------------------------------------------FUNCTIONS----------------------------------------------------//
-
+//---------------------------------process.exit---------------------------------------------//
+if (timedelay.autoclose == "true") {
+    setTimeout(() => {
+        process.exit(1)
+    }, timedelay.timeautoclose * 60000);
+}
+//-----------------------------FUNCTIONS----------------------------------------------------//
+//-----------------------------version------------------------------------------------------//
 function checkversion() {
     var versi = path.join(__dirname, "/version.json");
 
@@ -654,23 +666,23 @@ function checkversion() {
         );
     }, 1500);
 }
-
+//--------------------------------nonce-----------------------------------------------------//
 function nonce() {
     return "1098393848631590" + Math.floor(Math.random() * 9999);
 }
-
+//--------------------------------rantime---------------------------------------------------//
 function rantime() {
     var s = Math.floor(Math.random() * 9);
     if (s == 0) s = Math.floor(Math.random() * 9);
     return s + "000";
 }
-
+//--------------------------------auto-seed--------------------------------------------------//
 function autoseed(token) {
     var seedrandom = require("seedrandom");
     var rng = seedrandom.xor4096(`seedaccess-entropyverror-apiv10.${token}`);
     return rng();
 }
-
+//------------------------------sleepy------------------------------------------------------//
 function sleepy(t) {
     console.log(
         chalk.red(
@@ -680,7 +692,36 @@ function sleepy(t) {
             chalk.red("Waiting ...")
     );
 }
-
+//-----------------------------owo-------------------------------------------------------//
+function sayowo(token, tokentype, channelid) {
+    request.post(
+        {
+            headers: {
+                authorization: token,
+            },
+            url:
+                "https://discord.com/api/v9/channels/" +
+                channelid +
+                "/messages",
+            json: {
+                content: "owo",
+                nonce: nonce(),
+                tts: false,
+                flags: 0,
+            },
+        },
+        function (error, response, body) {
+            console.log(
+                chalk.red(
+                    `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                ) +
+                    chalk.magenta(" [" + tokentype + "]") +
+                    chalk.blue(" OwO ✅ ")
+            );
+        }
+    );
+}
+//-----------------------------------update-quests-socket---------------------------------//
 async function updatequestssocket(p1, p2) {
     socketio.emit("quest", {
         quest: `${global.questtitle}`,
@@ -688,7 +729,7 @@ async function updatequestssocket(p1, p2) {
         date: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
     });
 }
-//----------------------------------------------------Main Features----------------------------------------------------//
+//---------------------------------hunt-----------------------------------------------------//
 function hunt(token, timehunt, tokentype, channelid) {
     request.post(
         {
@@ -700,7 +741,7 @@ function hunt(token, timehunt, tokentype, channelid) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo hunt",
+                content: settings.prefix + "hunt",
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -717,7 +758,7 @@ function hunt(token, timehunt, tokentype, channelid) {
         }
     );
 }
-
+//-----------------------------battle-------------------------------------------------------//
 function battle(token, timebattle, tokentype, channelid) {
     request.post(
         {
@@ -729,7 +770,7 @@ function battle(token, timebattle, tokentype, channelid) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo battle",
+                content: settings.prefix + "battle",
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -746,7 +787,7 @@ function battle(token, timebattle, tokentype, channelid) {
         }
     );
 }
-
+//------------------------------animals-----------------------------------------------------//
 function animals(token, tokentype, channelid, type) {
     let animalcheck = false;
     var animaltypes = "";
@@ -768,16 +809,13 @@ function animals(token, tokentype, channelid, type) {
     ];
     for (a in ranks) {
         var e = ranks[a];
-
         if (config.settings.animals.animaltype[e] === "true") {
             var animaltypes = animaltypes + `${e} `;
         }
     }
-
     if (type === "sacrifice" || type === "sell") {
         animalcheck = true;
     }
-
     if (animalcheck) {
         const request = require("request");
         request.post(
@@ -787,7 +825,7 @@ function animals(token, tokentype, channelid, type) {
                 },
                 url: `https://discord.com/api/v9/channels/${channelid}/messages`,
                 json: {
-                    content: `owo ${type} ${animaltypes}`,
+                    content: `owo ${type} ${sac}`,
                     nonce: nonce(),
                     tts: false,
                     flags: 0,
@@ -796,25 +834,27 @@ function animals(token, tokentype, channelid, type) {
             function (error, response, body) {
                 console.log(
                     `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}` +
-                        ` [${tokentype}]` +
-                        ` Animals ✅ / Type: ${type}`
+                    ` [${tokentype}]` +
+                    ` Animals ✅ / Type: ${type}`
                 );
             }
         );
     } else {
         console.log(
             `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}` +
-                ` [${tokentype}]` +
-                ` Animals ❌ / Error: Incorrect Type`
+            ` [${tokentype}]` +
+            ` Animals ❌ / Error: Incorrect Type`
         );
     }
 }
 
+
+//--------------------------------pray------------------------------------------------------//
 function pray(token, tokentype, channelid) {
     if (tokentype == "Extra Token") {
-        var ct = "owo pray <@" + maintokenuserid + ">";
+        var ct = settings.prefix + "pray";
     } else {
-        var ct = "owo pray";
+        var ct = settings.prefix + "pray";
     }
     request.post(
         {
@@ -843,12 +883,12 @@ function pray(token, tokentype, channelid) {
         }
     );
 }
-
+//------------------------------curse-------------------------------------------------------//
 function curse(token, tokentype, channelid) {
     if (tokentype == "Extra Token") {
-        var ct = "owo curse <@" + maintokenuserid + ">";
+        var ct = settings.prefix + "curse";
     } else {
-        var ct = "owo curse";
+        var ct = settings.prefix + "curse";
     }
     request.post(
         {
@@ -913,9 +953,37 @@ function checklist(token, tokentype, channelid) {
           );
             }
         );
-
 }*/
-
+//-------------------------------level------------------------------------------------------//
+function level(token, tokentype, channelid) {
+    request.post(
+        {
+            headers: {
+                authorization: token,
+            },
+            url:
+                "https://discord.com/api/v9/channels/" +
+                channelid +
+                "/messages",
+            json: {
+                content: settings.prefix + "level",
+                nonce: nonce(),
+                tts: false,
+                flags: 0,
+            },
+        },
+        function (error, response, body) {
+            console.log(
+                chalk.red(
+                    `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                ) +
+                    chalk.magenta(" [" + tokentype + "]") +
+                    chalk.yellow(" Level ✅")
+            );
+        }
+    );
+}
+//--------------------------------daily-----------------------------------------------------//
 function daily(token, tokentype, channelid) {
     request.post(
         {
@@ -927,7 +995,7 @@ function daily(token, tokentype, channelid) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo daily",
+                content: settings.prefix + "daily",
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -944,7 +1012,7 @@ function daily(token, tokentype, channelid) {
         }
     );
 }
-
+//-------------------------------coin-flip---------------------------------------------------//
 function coinflip(token, tokentype, channelid) {
     request.post(
         {
@@ -956,7 +1024,7 @@ function coinflip(token, tokentype, channelid) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo coinflip " + settings.gamble.coinflip.amount,
+                content: settings.prefix + "coinflip " + settings.gamble.coinflip.amount,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -977,7 +1045,7 @@ function coinflip(token, tokentype, channelid) {
         }
     );
 }
-
+//-----------------------------slot---------------------------------------------------------//
 function slots(token, tokentype, channelid) {
     request.post(
         {
@@ -989,7 +1057,7 @@ function slots(token, tokentype, channelid) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo slots " + settings.gamble.slots.amount,
+                content: settings.prefix + "slots " + settings.gamble.slots.amount,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -1009,7 +1077,7 @@ function slots(token, tokentype, channelid) {
         }
     );
 }
-
+//----------------------------------upgrade-all-------------------------------------------------//
 function upgradeall(token, tokentype, channelid) {
     request.post(
         {
@@ -1022,7 +1090,7 @@ function upgradeall(token, tokentype, channelid) {
                 "/messages",
             json: {
                 content:
-                    "owo upgrade " + settings.upgradeautohunt.type + " all",
+                    settings.prefix + "upgrade " + settings.upgradeautohunt.type + " all",
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -1039,8 +1107,78 @@ function upgradeall(token, tokentype, channelid) {
         }
     );
 }
-//----------------------------------------------------BanCheck + Similar Bypass----------------------------------------------------//
+//-----------------------------check-main-token-----------------------------------------------//
+function checkmaintoken(token) {
+    request.get(
+        {
+            headers: {
+                authorization: token,
+            },
+            url: "https://canary.discord.com/api/v9/users/@me",
+        },
+        function (error, response, body) {
+            var bod = JSON.parse(body);
 
+            if (String(bod.message) === "401: Unauthorized") {
+                console.log(chalk.red(`Main Token / ${String(bod.message)}`));
+                setTimeout(() => {
+                    process.exit(0);
+                }, 5000);
+            } else {
+                console.log(
+                    `[Main Token] User: ${bod.username}#${bod.discriminator}`
+                );
+                setTimeout(() => {
+                    level(maintoken, "Main Token", mainchannelid);
+                    daily(maintoken, "Main Token", mainchannelid);
+                }, 3500);
+
+                console.log(chalk.green("Main Token ✅"));
+                if (settings.huntandbattle == "true") {
+                    setTimeout(() => {
+                        hunt(maintoken, "StartUp", "Main Token", mainchannelid);
+                    }, 5000);
+
+                    setTimeout(() => {
+                        battle(
+                            maintoken,
+                            "StartUp",
+                            "Main Token",
+                            mainchannelid
+                        );
+                    }, 7500);
+                }
+                if (settings.animals.enable == "true") {
+                    setTimeout(() => {
+                        animals(
+                            maintoken,
+                            "Main Token",
+                            mainchannelid,
+                            settings.animals.type
+                        );
+                    }, 9500);
+                }
+                if (settings.pray == "true") {
+                    setTimeout(() => {
+                        pray(maintoken, "Main Token", mainchannelid);
+                    }, 11000);
+                }
+                if (settings.curse == "true") {
+                    setTimeout(() => {
+                        curse(maintoken, "Main Token", mainchannelid);
+                    }, 14000);
+                }
+                if (settings.upgradeautohunt.enable == "true") {
+                    setTimeout(() => {
+                        upgradeall(maintoken, "Main Token", mainchannelid);
+                    }, 17000);
+                }
+            }
+        }
+    );
+}
+
+//----------------------------------ban-check-----------------------------------------------//
 function bancheck(token, channelid) {
     request.get(
         {
@@ -1081,7 +1219,9 @@ function bancheck(token, channelid) {
                 }, 1500);
             } else {
                 global.mainbanc = true;
-                elaina2(token, channelid);
+                if (settings.randommess == "true"){
+                    elaina2(token, channelid);
+                }
                 console.log(
                     chalk.red(
                         `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
@@ -1096,7 +1236,7 @@ function bancheck(token, channelid) {
         }
     );
 }
-
+//------------------------------------extra-ban-check---------------------------------------------//
 function extrabancheck(token, channelid) {
     request.get(
         {
@@ -1136,7 +1276,9 @@ function extrabancheck(token, channelid) {
                 }, 1500);
             } else {
                 global.extrabanc = true;
-                elaina2(token, channelid);
+                if (settings.randommess == "true"){
+                    elaina2(token, channelid);
+                }
                 console.log(
                     chalk.red(
                         `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
@@ -1151,7 +1293,7 @@ function extrabancheck(token, channelid) {
         }
     );
 }
-
+//--------------------------------dm-ban-check----------------------------------------------//
 function dmbancheck(token, channelid) {
     request.get(
         {
@@ -1211,7 +1353,7 @@ function dmbancheck(token, channelid) {
         }
     );
 }
-//wheres my mind :(
+//---------------------------dm-extra-ban-check-------------------------------------------//
 function dmextrabancheck(token, channelid) {
     request.get(
         {
@@ -1269,7 +1411,7 @@ function dmextrabancheck(token, channelid) {
         }
     );
 }
-
+//-------------------------------dm-protect-pro-uwu-------------------------------------//
 function dmprotectprouwu(token, channelid, tokentype) {
     request.post(
         {
@@ -1301,7 +1443,7 @@ function dmprotectprouwu(token, channelid, tokentype) {
         }
     );
 }
-
+//--------------------------------elaina2----------------------------------------------//
 function elaina2(token, channelid, phrasesFilePath) {
     // Read the JSON
     fs.readFile("./phrases/phrases.json", "utf8", (err, data) => {
@@ -1344,9 +1486,7 @@ function elaina2(token, channelid, phrasesFilePath) {
         }
     });
 }
-
-//----------------------------------------------------Inventory----------------------------------------------------//
-
+//------------------------------check-inventory-----------------------------------------------//
 function checkinv(token, channelid, tokentype) {
     if (settings.inventory.gemcheck == "true") {
         request.get(
@@ -1419,7 +1559,7 @@ function checkinv(token, channelid, tokentype) {
         getinv(token, channelid, tokentype, "nogem", collect(["nocollection"]));
     }
 }
-
+//------------------------------get-inventory---------------------------------------------------//
 function getinv(token, channelid, tokentype, gemc, collectc) {
     request.post(
         {
@@ -1431,7 +1571,7 @@ function getinv(token, channelid, tokentype, gemc, collectc) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo inv",
+                content: settings.prefix + "inv",
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -1656,7 +1796,13 @@ function getinv(token, channelid, tokentype, gemc, collectc) {
                         }, 2000);
                     }
                 }
-
+                if (settings.inventory.cratecheck == "true") {
+                    if (cont.includes("`100`")) {
+                        setTimeout(() => {
+                            boxuse(token, "crate all", channelid, tokentype);
+                        }, 2000);
+                    }
+                }
                 if (settings.inventory.eventcheck == "true") {
                     if (cont.includes("`018`")) {
                         // valentines day
@@ -1686,7 +1832,7 @@ function getinv(token, channelid, tokentype, gemc, collectc) {
         );
     }, 3000);
 }
-
+//--------------------------------use-gem-------------------------------------------------//
 function gemuse(token, gem, channelid, tokentype) {
     request.post(
         {
@@ -1698,7 +1844,7 @@ function gemuse(token, gem, channelid, tokentype) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo use " + gem,
+                content: settings.prefix + "use " + gem,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -1715,7 +1861,7 @@ function gemuse(token, gem, channelid, tokentype) {
         }
     );
 }
-
+//----------------------------------use-box------------------------------------------------//
 function boxuse(token, box, channelid, tokentype) {
     request.post(
         {
@@ -1727,7 +1873,7 @@ function boxuse(token, box, channelid, tokentype) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo " + box,
+                content: settings.prefix + box,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -1744,7 +1890,7 @@ function boxuse(token, box, channelid, tokentype) {
         }
     );
 }
-
+//----------------------------use-event--------------------------------------------------//
 function eventuse(token, eventbox, channelid, tokentype) {
     request.post(
         {
@@ -1756,7 +1902,7 @@ function eventuse(token, eventbox, channelid, tokentype) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo use " + eventbox,
+                content: settings.prefix + "use " + eventbox,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -1783,158 +1929,150 @@ function eventuse(token, eventbox, channelid, tokentype) {
         }
     );
 }
-//. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. ... __ .
-//----------------------------------------------------Quest----------------------------------------------------//
-async function getquests(token, channelid, tokentype) {
-    request.post(
-        {
-            headers: {
-                authorization: token,
-            },
-            url:
-                "https://discord.com/api/v9/channels/" +
-                channelid +
-                "/messages",
-            json: {
-                content: "owo quest",
-                nonce: nonce(),
-                tts: false,
-                flags: 0,
-            },
+//--------------------------------get-quest-----------------------------------------------------//
+/*async function getquests(token, channelid, tokentype) {
+request.post(
+    {
+        headers: {
+            authorization: token,
         },
-        async function (error, response, body) {
-            await delay(3500);
-            request.get(
-                {
-                    headers: {
-                        authorization: token,
-                    },
-                    url:
-                        "https://discord.com/api/v9/channels/" +
-                        channelid +
-                        "/messages?limit=1",
+        url:
+            "https://discord.com/api/v9/channels/" +
+            channelid +
+            "/messages",
+        json: {
+            content: settings.prefix + "quest",
+            nonce: nonce(),
+            tts: false,
+            flags: 0,
+        },
+    },
+    async function (error, response, body) {
+        await delay(3500);
+        request.get(
+            {
+                headers: {
+                    authorization: token,
                 },
-                async function (error, response, body) {
-                    var bod = JSON.parse(body);
-                    var cont = bod[0].embeds;
-                    await delay(2500);
-                    console.log(
-                        chalk.red(
-                            `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-                        ) +
-                            chalk.magenta(` ${tokentype}`) +
-                            chalk.yellow("Checking quest 🔎")
-                    );
-                    if (
-                        cont[0].description.includes(
-                            "You finished all of your quests!"
-                        )
-                    ) {
-                        global.quest = false;
-                    } else {
-                        var quest = cont[0].description
-                            .split("**1. ")[1]
-                            .split("**")[0];
-                        global.questtitle = `${quest}`;
-                        var progress1 = cont[0].description
-                            .split("Progress: [")[1]
-                            .split("/")[0];
-                        var progress2 = cont[0].description
-                            .split("/")[1]
-                            .split("]")[0];
-
-                        if (quest.includes("Battle")) {
-                            try {
-                                quest = cont[0].description
-                                    .split("**2. ")[1]
-                                    .split("**")[0];
-                            } catch (error) {
-                                global.quest = false;
-                            }
+                url:
+                    "https://discord.com/api/v9/channels/" +
+                    channelid +
+                    "/messages?limit=1",
+            },
+            async function (error, response, body) {
+                var bod = JSON.parse(body);
+                var cont = bod[0].embeds;
+                await delay(2500);
+                console.log(
+                    chalk.red(
+                        `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                    ) +
+                        chalk.magenta(` ${tokentype}`) +
+                        chalk.yellow("Checking quest 🔎")
+                );
+                if (
+                    cont[0].description.includes(
+                        "You finished all of your quests!"
+                    )
+                ) {
+                    global.quest = false;
+                } else {
+                    var quest = cont[0].description
+                        .split("**1. ")[1]
+                        .split("**")[0];
+                    global.questtitle = `${quest}`;
+                    var progress1 = cont[0].description
+                        .split("Progress: [")[1]
+                        .split("/")[0];
+                    var progress2 = cont[0].description
+                        .split("/")[1]
+                        .split("]")[0];
+                    if (quest.includes("Battle")) {
+                        try {
+                            quest = cont[0].description
+                                .split("**2. ")[1]
+                                .split("**")[0];
+                        } catch (error) {
+                            global.quest = false;
                         }
-
-                        if (global.quest) {
-                            socketio.emit("quest", {
-                                quest: `${global.questtitle}`,
-                                progress: `${progress1} / ${progress2}`,
-                                date: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
-                            });
-
-                            switch (true) {
-                                case quest.includes("Say 'owo'"):
-                                    global.quest = false;
-                                    questsayowo(
-                                        token,
-                                        channelid,
-                                        parseInt(progress1),
-                                        parseInt(progress2)
-                                    );
-                                    break; //E <3
-                                case quest.includes(
-                                    "xp from hunting and battling"
-                                ):
-                                    global.quest = false;
-                                    xpquests(token, channelid);
-
-                                case quest.includes("Gamble"):
-                                    global.quest = false;
-                                    questgamble(
-                                        token,
-                                        channelid,
-                                        parseInt(progress1), //coded by @mid0aria on github
-                                        parseInt(progress2)
-                                    );
-                                    break;
-
-                                case quest.includes(
-                                    "Have a friend curse you"
-                                ) && global.etoken:
-                                    global.quest = false;
-                                    questcurseme(
-                                        extratoken,
-                                        maintokenuserid,
-                                        channelid,
-                                        parseInt(progress1),
-                                        parseInt(progress2)
-                                    );
-                                    break;
-
-                                case quest.includes(
-                                    "Have a friend pray to you"
-                                ) && global.etoken:
-                                    global.quest = false; //coded by @mid0aria on github
-                                    questprayme(
-                                        extratoken,
-                                        maintokenuserid,
-                                        channelid,
-                                        parseInt(progress1),
-                                        parseInt(progress2)
-                                    );
-                                    break;
-
-                                case quest.includes("Battle with a friend") &&
-                                    global.etoken:
-                                    global.quest = false;
-                                    questbattlefriend(
-                                        token,
-                                        extratoken,
-                                        maintokenuserid,
-                                        channelid,
-                                        parseInt(progress1),
-                                        parseInt(progress2)
-                                    );
-                                    break;
-                                case quest.includes(
-                                    "Receive a cookie from 1 friends"
-                                ) && global.etoken:
-                                    global.quest = false;
-                                    questcookiefriend(
-                                        extratoken,
-                                        maintokenuserid,
-                                        channelid,
-                                        parseInt(progress1),
-                                        parseInt(progress2)
-                                    );
+                    }
+                    if (global.quest) {
+                        socketio.emit("quest", {
+                            quest: `${global.questtitle}`,
+                            progress: `${progress1} / ${progress2}`,
+                            date: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+                        });
+                        switch (true) {
+                            case quest.includes("Say 'owo'"):
+                                global.quest = false;
+                                questsayowo(
+                                    token,
+                                    channelid,
+                                    parseInt(progress1),
+                                    parseInt(progress2)
+                                );
+                                break; //E <3
+                            case quest.includes(
+                                "xp from hunting and battling"
+                            ):
+                                global.quest = false;
+                                xpquests(token, channelid);
+                            case quest.includes("Gamble"):
+                                global.quest = false;
+                                questgamble(
+                                    token,
+                                    channelid,
+                                    parseInt(progress1), //coded by @mid0aria on github
+                                    parseInt(progress2)
+                                );
+                                break;
+                            case quest.includes(
+                                "Have a friend curse you"
+                            ) && global.etoken:
+                                global.quest = false;
+                                questcurseme(
+                                    extratoken,
+                                    maintokenuserid,
+                                    channelid,
+                                    parseInt(progress1),
+                                    parseInt(progress2)
+                                );
+                                break;
+                            case quest.includes(
+                                "Have a friend pray to you"
+                            ) && global.etoken:
+                                global.quest = false; //coded by @mid0aria on github
+                                questprayme(
+                                    extratoken,
+                                    maintokenuserid,
+                                    channelid,
+                                    parseInt(progress1),
+                                    parseInt(progress2)
+                                );
+                                break;
+                            case quest.includes("Battle with a friend") &&
+                                global.etoken:
+                                global.quest = false;
+                                questbattlefriend(
+                                    token,
+                                    extratoken,
+                                    maintokenuserid,
+                                    channelid,
+                                    parseInt(progress1),
+                                    parseInt(progress2)
+                                );
+                                break;
+                            case quest.includes(
+                                "Receive a cookie from 1 friends"
+                            ) && global.etoken:
+                                global.quest = false;
+                                questcookiefriend(
+                                    extratoken,
+                                    maintokenuserid,
+                                    channelid,
+                                    parseInt(progress1),
+                                    parseInt(progress2)
+                                );
                             }
                         }
                     }
@@ -1942,8 +2080,8 @@ async function getquests(token, channelid, tokentype) {
             );
         }
     );
-}
-
+}*/
+//---------------------------------quest-say-owo-------------------------------------------//
 async function questsayowo(token, channelid, pro1, pro2) {
     for (let np = pro2 - pro1; np > 0; np--) {
         request.post({
@@ -1973,7 +2111,7 @@ async function questsayowo(token, channelid, pro1, pro2) {
     global.quest = true;
     getquests(token, channelid);
 }
-
+//--------------------------------xp-quest----------------------------------------------------------//
 async function xpquests(token, channelid) {
     await delay(540000);
     global.quest = true;
@@ -1991,7 +2129,7 @@ async function questcurseme(token, userid, channelid, pro1, pro2) {
                 channelid +
                 "/messages",
             json: {
-                content: `owo curse <@${userid}>`,
+                content: settings.prefix `curse <@${userid}>`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -2005,7 +2143,7 @@ async function questcurseme(token, userid, channelid, pro1, pro2) {
     global.quest = true;
     getquests(token, channelid);
 }
-
+//-----------------------------quest-pray-me---------------------------------------------------//
 async function questprayme(token, userid, channelid, pro1, pro2) {
     for (let np = pro2 - pro1; np > 0; np--) {
         request.post({
@@ -2017,7 +2155,7 @@ async function questprayme(token, userid, channelid, pro1, pro2) {
                 channelid +
                 "/messages",
             json: {
-                content: `owo pray <@${userid}>`,
+                content: settings.prefix + `pray <@${userid}>`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -2031,7 +2169,7 @@ async function questprayme(token, userid, channelid, pro1, pro2) {
     global.quest = true;
     getquests(token, channelid);
 }
-
+//------------------------------quest-batter-friend--------------------------------------------//
 async function questbattlefriend(
     maintoken,
     extratoken,
@@ -2050,7 +2188,7 @@ async function questbattlefriend(
                 channelid +
                 "/messages",
             json: {
-                content: `owo battle <@${mainuserid}>`,
+                content: settings.prefix + `battle <@${mainuserid}>`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -2066,7 +2204,7 @@ async function questbattlefriend(
                 channelid +
                 "/messages",
             json: {
-                content: `owo ab`,
+                content: settings.prefix + `ab`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -2080,7 +2218,7 @@ async function questbattlefriend(
     global.quest = true;
     getquests(maintoken, channelid);
 }
-
+//--------------------------------quest-gamble----------------------------------------------//
 async function questgamble(token, channelid, pro1, pro2) {
     for (let np = pro2 - pro1; np > 0; np--) {
         request.post({
@@ -2092,7 +2230,7 @@ async function questgamble(token, channelid, pro1, pro2) {
                 channelid +
                 "/messages",
             json: {
-                content: `owo cf 1`,
+                content: settings.prefix `cf 1`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -2118,7 +2256,7 @@ async function questcookiefriend(token, userid, channelid, pro1, pro2) {
                 channelid +
                 "/messages",
             json: {
-                content: `owo cookie <@${userid}>`,
+                content: settings.prefix + `cookie <@${userid}>`,
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
