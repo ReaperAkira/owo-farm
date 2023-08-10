@@ -177,11 +177,11 @@ if (settings.discordrpc == "true"){
             buttons: [
                 {
                     label: "Farm Bot",
-                    url: "https://github.com/Mid0aria/owofarmbot",
+                    url: "https://github.com/ReaperAkira/owo-farm",
                 },
                 {
                     label: "Github",
-                    url: "https://github.com/Mid0aria/",
+                    url: "https://github.com/ReaperAkira/",
                 },
             ],
         });
@@ -600,7 +600,7 @@ function checkversion() {
         console.log();
     } else {
         const versiun = https.get(
-            "https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/version.json",
+            "https://raw.githubusercontent.com/ReaperAkira/owo-farm/main/version.json",
             function (response) {
                 var versistream = fs.createWriteStream(versi);
                 response.pipe(versistream);
@@ -613,7 +613,7 @@ function checkversion() {
     setTimeout(() => {
         request.get(
             {
-                url: "https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/version.json",
+                url: "https://raw.githubusercontent.com/ReaperAkira/owo-farm/main/version.json",
             },
             function (err, res, body) {
                 let bod = JSON.parse(body);
@@ -631,7 +631,7 @@ function checkversion() {
                     );
                 } else {
                     const boti = https.get(
-                        "https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/updater.js",
+                        "https://raw.githubusercontent.com/ReaperAkira/owo-farm/main/updater.js",
                         function (response) {
                             var buotstream = fs.createWriteStream(apdater);
                             response.pipe(buotstream);

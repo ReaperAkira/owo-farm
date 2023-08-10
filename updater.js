@@ -7,7 +7,7 @@ console.log("updating ...");
 
 request.get(
     {
-        url: "https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/changes.json",
+        url: "https://raw.githubusercontent.com/ReaperAkira/owo-farm/main/changes.json",
     },
     function (err, res, body) {
         let bod = JSON.parse(body);
@@ -21,7 +21,7 @@ request.get(
                 }
             }
             const newupdater = https.get(
-                `https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/${a}`,
+                `https://raw.githubusercontent.com/ReaperAkira/owo-farm/main/${a}`,
                 function (response) {
                     var updaterstream = fs.createWriteStream(
                         path.join(__dirname, `/${a}`)
