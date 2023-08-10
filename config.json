@@ -1,67 +1,85 @@
 {
     "settings": {
-        "huntandbattle": "true",
-        "banbypass": "true",
-        "discordrpc": "true",
-        "pray": "false",
-        "curse": "false",
-        "autoquest": "true",
-        "extratoken": "false",
-        "inventory": {
-            "inventorycheck": "true",
-            "gemcheck": "true",
-            "lootboxcheck": "true",
-            "fabledlootboxcheck": "true",
-            "cratecheck": "true",
-            "eventcheck": "true"
+      "prefix":               "o",
+      "owo":                  "true",
+      "pray":                 "true",
+      "curse":                "palse",
+      "hunt":                 "true",
+      "battle":               "true",
+      "socket":               "true",
+      "banbypass":            "true",
+      "autoquest":            "true",
+      "extratoken":           "true",
+      "randommess":           "true",
+      "discordrpc":           "",
+      "inventory": {
+        "inventorycheck":     "true",
+        "gemcheck":           "true",
+        "lootboxcheck":       "true",
+        "fabledlootboxcheck": "true",
+        "cratecheck":         "true",
+        "eventcheck":         "true"
         },
-        "animals": {
-            "enable": "false",
-            "type": "sacrifice",
-            "animaltype": {
-                "common": "true",
-                "uncommon": "true",
-                "rare": "true",
-                "epic": "true",
-                "mythical": "false",
-                "patreon": "false",
-                "cpatreon": "false",
-                "legendary": "false",
-                "gem": "false",
-                "bot": "false",
-                "distorted": "false",
-                "fabled": "false",
-                "special": "false",
-                "hidden": "false"
-            }
+      "animals": {
+        "enable":             "true",
+        "type":               "sell",
+        "animaltype": {  
+        "common":             "true",
+        "uncommon":           "true",
+        "rare":               "true",
+        "epic":               "true",
+        "mythical":           "true",
+        "patreon":            "true",
+        "cpatreon":           "true",
+        "legendary":          "true",
+        "gem":                "true",
+        "bot":                "true",
+        "distorted":          "true",
+        "fabled":             "true",
+        "special":            "true",
+        "hidden":             "true"
+        }
         },
-        "upgradeautohunt": {
-            "enable": "false",
-            "type": "duration"
+      "upgradeautohunt": {
+        "enable":             "true",
+        "type":               "duration"
         },
-        "gamble": {
-            "coinflip": {
-                "enable": "false",
-                "amount": "1"
-            },
-            "slots": {
-                "enable": "false",
-                "amount": "1"
-            }
+      "gamble": {
+        "coinflip": {
+          "enable":           "true",
+          "amount":           "1"
+        },
+        "slots": {
+          "enable":           "true",
+          "amount":           "1"
+        }
         }
     },
     "main": {
-        "token": "",
-        "userid": "",
-        "channelid": "",
-        "owodmchannelid": "",
-        "autoquestchannelid": ""
+      "token":                "",  
+      "userid":               "",
+      "channelid":            "",
+      "owodmchannelid":       ""
     },
     "extra": {
-        "token": "",
-        "userid": "",
-        "channelid": "",
-        "owodmchannelid": "",
-        "autoquestchannelid": ""
+      "token":                "",
+      "userid":               "",
+      "channelid":            "",
+      "owodmchannelid":       ""
+    },
+    "timedelay": { 
+    "   (▀̿Ĺ̯▀̿ ̿)"               :"sec",
+        "owo"                 :20,
+        "huntandbattle"       :20,
+        "coinflip"            :20,
+        "slots"               :23,
+    "   ヾ(⌐■_■)♪∐"           :"min",
+        "pray"                :5.5,
+        "curse"               :5.5,
+        "animals"             :10,
+        "upgradeautohunt"     :10,
+        "autoclose"           :"false",
+        "timeautoclose"       :10   
+    
     }
 }
