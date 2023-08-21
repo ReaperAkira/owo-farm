@@ -1,12 +1,11 @@
 {
     "settings": {
-      "prefix":               "o",
+      "prefix":               "owo",
       "owo":                  "true",
       "pray":                 "true",
       "curse":                "palse",
       "hunt":                 "true",
       "battle":               "true",
-      "socket":               "true",
       "banbypass":            "true",
       "autoquest":            "true",
       "extratoken":           "true",
