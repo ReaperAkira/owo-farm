@@ -55,13 +55,12 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
 ```
 {
     "settings": {
-      "prefix":               "o",
+      "prefix":               "owo",
       "owo":                  "true or false",
       "pray":                 "true or false",
       "curse":                "true or false",
       "hunt":                 "true or false",
       "battle":               "true or false",
-      "socket":               "true or false",
       "banbypass":            "true or false",
       "autoquest":            "true or false",
       "extratoken":           "true or false",
