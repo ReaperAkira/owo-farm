@@ -478,16 +478,20 @@ if (extratokencheck == "true") {
 }
 //--------------------------HUNT BATTLE-------------------------------------------------------//
 setInterval(() => {
+    if (settings.banbypass == "true") {
+        bancheck(maintoken, mainchannelid);
+        dmbancheck(maintoken, owodmmainchannelid);
+    }
+}, 1000);
+setInterval(() => {
     var timehunt = parseInt(rantime());
     if (timehunt <= 5000) {
         timehunt = timehunt + 2000;
     }
 
     var timebattle = timehunt + 1000;
-    if (settings.banbypass == "true") {
-        bancheck(maintoken, mainchannelid);
-        dmbancheck(maintoken, owodmmainchannelid);
-    }
+    logbancheck(maintoken, mainchannelid);
+    logdmbancheck(maintoken, owodmmainchannelid);
     if (settings.hunt == "true") {
         if (global.mainbanc) {
             setTimeout(() => {
@@ -511,6 +515,12 @@ setInterval(() => {
 
 if (global.etoken) {
     setInterval(() => {
+        if (settings.banbypass == "true") {
+            extrabancheck(extratoken, extrachannelid);
+            dmextrabancheck(extratoken, owodmextrachannelid);
+        }
+    }, 1000);
+    setInterval(() => {
         var timehunt = parseInt(rantime());
         if (timehunt <= 5000) {	
             timehunt = timehunt + 2000;
@@ -518,8 +528,8 @@ if (global.etoken) {
 
         var timebattle = timehunt + 1000;
         if (settings.banbypass == "true") {
-            extrabancheck(extratoken, extrachannelid);
-            dmextrabancheck(extratoken, owodmextrachannelid);
+            logextrabancheck(extratoken, extrachannelid);
+            logdmextrabancheck(extratoken, owodmextrachannelid);
         }
         if (settings.hunt == "true") {
             if (global.extrabanc) {
@@ -1139,7 +1149,7 @@ function checklist(token, tokentype, channelid) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo cl",	
+                content: settings.prefix + "cl",	
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
@@ -1212,6 +1222,17 @@ function checklist(token, tokentype, channelid) {
                             } else {
                                 updatechecklistsocket("quest", "✅");
                             }
+                            if (des.includes("⬛ 📜")) {
+                                if (settings.autoquest === "true") {
+                                    getquests(
+                                        extratoken,
+                                        extraautoquestchannelid,
+                                        "Extra Token"
+                                    );
+                                }
+                            } else {
+                                updatechecklistsocket("quest", "✅");
+                            }
                         } catch (error) {
                             updateerrorsocket("Unable to get Checklist");
                             console.log(
@@ -1258,63 +1279,38 @@ function daily(token, tokentype, channelid) {
     );
 }
 function cookie(token, tokentype, channelid) {
-    if (tokentype == "Main token"){
-        request.post(
-            {
-                headers: {
-                    authorization: token,
-                },
-                url:
-                    "https://discord.com/api/v9/channels/" +
-                    channelid +
-                    "/messages",
-                json: {
-                    content: settings.prefix + "cookie <@"+ extratokenuserid +">",
-                    nonce: nonce(),
-                    tts: false,
-                    flags: 0,
-                },
-            },
-            function (error, response, body) {
-                updatechecklistsocket("cookie", "✅");
-                console.log(
-                    chalk.red(
-                        `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-                    ) +
-                        chalk.magenta(" [" + tokentype + "]") +
-                        chalk.yellow(" Cookie ✅")
-                );
-            }
-        );
+    if (tokentype == "Extra Token") {
+        var ct = settings.prefix + "cookie <@"+ maintokenuserid + ">";
+    } else {
+        var ct = settings.prefix + "cookie <@"+ extratokenuserid +">";
     }
-    if (tokentype == "Extra token")
-        request.post(
-            {
-                headers: {
-                    authorization: token,
-                },
-                url:
-                    "https://discord.com/api/v9/channels/" +
-                    channelid +
-                    "/messages",
-                json: {
-                    content: settings.prefix + "cookie <@"+ maintokenuserid +">",
-                    nonce: nonce(),
-                    tts: false,
-                    flags: 0,
-                },
+    request.post(
+        {
+            headers: {
+                authorization: token,
             },
-            function (error, response, body) {
-                updatechecklistsocket("cookie", "✅");
-                console.log(
-                    chalk.red(
-                        `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-                    ) +
-                        chalk.magenta(" [" + tokentype + "]") +
-                        chalk.yellow(" Cookie ✅")
-                );
-            }
-        );
+            url:
+                "https://discord.com/api/v9/channels/" +
+                channelid +
+                "/messages",
+            json: {
+                content: ct,
+                nonce: nonce(),
+                tts: false,
+                flags: 0,
+            },
+        },
+        function (error, response, body) {
+            updatechecklistsocket("cookie", "✅");
+            console.log(
+                chalk.red(
+                    `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                ) +
+                    chalk.magenta(" [" + tokentype + "]") +
+                    chalk.yellow(" Cookie ✅")
+            );
+        }
+    );
 }
 
 //-------------------------------coin-flip---------------------------------------------------//
@@ -1482,7 +1478,134 @@ function checkmaintoken(token) {
         }
     );
 }
+//----------------------------log-ban-check---log-dm-ban-check-------------------------------//
+function logbancheck(token, channelid) {
+    request.get(
+        {
+            headers: {
+                authorization: token,
+            },
+            url:
+                "https://discord.com/api/v9/channels/" +
+                channelid +
+                "/messages?limit=1",
+        },
+        function (error, response, body) {
+            var bod = JSON.parse(body);
+            var cont = bod[0].content;
 
+            global.mainbanc = true;
+            if (settings.randommess == "true"){
+                elaina2(token, channelid);
+            }
+            console.log(
+                chalk.red(
+                    `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                ) +
+                    chalk.magenta(" [Main Token]") +
+                    chalk.green(" Chat Captcha Checked ✅")
+            );
+            setTimeout(() => {
+                sleepy("Main");
+            }, 5000);
+        }
+    );
+}
+function logextrabancheck(token, channelid) {
+    request.get(
+        {
+            headers: {
+                authorization: token,
+            },
+            url:
+                "https://discord.com/api/v9/channels/" +
+                channelid +
+                "/messages?limit=1",
+        },
+        function (error, response, body) {
+            var bod = JSON.parse(body);
+            global.mainbanc = true;
+            if (settings.randommess == "true"){
+                elaina2(token, channelid);
+            }
+            console.log(
+                chalk.red(
+                    `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                ) +
+                    chalk.magenta(" [Extra Token]") +
+                    chalk.green(" Chat Captcha Checked ✅")
+            );
+            setTimeout(() => {
+                sleepy("Extra");
+            }, 5000);
+        }
+    );
+}
+function logdmbancheck(token, channelid) {
+    request.get(
+        {
+            headers: {
+                authorization: token,
+            },
+            url:
+                "https://discord.com/api/v9/channels/" +
+                channelid +
+                "/messages?limit=1",
+        },
+        function (error, response, body) {
+            var bod = JSON.parse(body);
+            if (bod[0] == undefined) {
+                dmprotectprouwu(token, channelid, "Main Token");
+            } else {
+                var cont = bod[0].content;
+                global.mainbanc = true;
+                console.log(
+                    chalk.red(
+                        `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                    ) +
+                        chalk.magenta(" [Main Token]") +
+                        chalk.green(" DM Captcha Checked ✅")
+                );
+
+                setTimeout(() => {
+                    sleepy("Main");
+                }, 2000);
+            }
+        }
+    );
+}
+function logdmextrabancheck(token, channelid) {
+    request.get(
+        {
+            headers: {
+                authorization: token,
+            },
+            url:
+                "https://discord.com/api/v9/channels/" +
+                channelid +
+                "/messages?limit=1",
+        },
+        function (error, response, body) {
+            var bod = JSON.parse(body);
+            if (bod[0] == undefined) {
+                dmprotectprouwu(token, channelid, "Extra Token");
+            } else {
+                var cont = bod[0].content;
+                global.mainbanc = true;
+                console.log(
+                    chalk.red(
+                        `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                    ) +
+                        chalk.magenta(" [Extra Token]") +
+                        chalk.green(" DM Captcha Checked ✅")
+                );
+                setTimeout(() => {
+                    sleepy("Extra");
+                }, 2000);
+            }
+        }
+    );
+}
 //----------------------------------ban-check-----------------------------------------------//
 function bancheck(token, channelid) {
     request.get(
@@ -1498,7 +1621,6 @@ function bancheck(token, channelid) {
         function (error, response, body) {
             var bod = JSON.parse(body);
             var cont = bod[0].content;
-
             if (cont.includes("captcha")) {
                 player.play('./phrases/music.mp3', function (err) {
                     if (err) throw err;
@@ -1524,22 +1646,7 @@ function bancheck(token, channelid) {
                 });
                 setTimeout(() => {
                     process.exit(0);
-                }, 10000);
-            } else {
-                global.mainbanc = true;
-                if (settings.randommess == "true"){
-                    elaina2(token, channelid);
-                }
-                console.log(
-                    chalk.red(
-                        `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-                    ) +
-                        chalk.magenta(" [Main Token]") +
-                        chalk.green(" Chat Captcha Checked ✅")
-                );
-                setTimeout(() => {
-                    sleepy("Main");
-                }, 5000);
+                }, 3000);
             }
         }
     );
@@ -1584,22 +1691,7 @@ function extrabancheck(token, channelid) {
                 });
                 setTimeout(() => {
                     process.exit(0);
-                }, 10000);
-            } else {
-                global.extrabanc = true;
-                if (settings.randommess == "true"){
-                    elaina2(token, channelid);
-                }
-                console.log(
-                    chalk.red(
-                        `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-                    ) +
-                        chalk.magenta(" [Extra Token]") +
-                        chalk.green(" Chat Captcha Checked ✅")
-                );
-                setTimeout(() => {
-                    sleepy("Extra");
-                }, 5000);
+                }, 3000);
             }
         }
     );
@@ -1648,20 +1740,7 @@ function dmbancheck(token, channelid) {
                     });
                     setTimeout(() => {
                         process.exit(0);
-                    }, 10000);
-                } else {
-                    global.mainbanc = true;
-                    console.log(
-                        chalk.red(
-                            `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-                        ) +
-                            chalk.magenta(" [Main Token]") +
-                            chalk.green(" DM Captcha Checked ✅")
-                    );
-
-                    setTimeout(() => {
-                        sleepy("Main");
-                    }, 2000);
+                    }, 3000);
                 }
             }
         }
@@ -1710,19 +1789,7 @@ function dmextrabancheck(token, channelid) {
                     });
                     setTimeout(() => {
                         process.exit(0);
-                    }, 10000);
-                } else {
-                    global.extrabanc = true;
-                    console.log(
-                        chalk.red(
-                            `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-                        ) +
-                            chalk.magenta(" [Extra Token]") +
-                            chalk.green(" DM Captcha Checked ✅")
-                    );
-                    setTimeout(() => {
-                        sleepy("Extra");
-                    }, 2000);
+                    }, 3000);
                 }
             }
         }
