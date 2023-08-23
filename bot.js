@@ -108,7 +108,7 @@ var owodmextrachannelid = config.extra.owodmchannelid;
 var mainautoquestchannelid = config.main.autoquestchannelid;
 var extraautoquestchannelid = config.extra.autoquestchannelid;
 
-var version = "1.0.3";
+var version = "1.0.3.1";
 var banversion = "0.1.8";
 
 global.quest = true;
@@ -731,7 +731,19 @@ function checkversion() {
                             "Your farm bot is not up to date please run node updater.js"
                         )
                     );
-                    process.exit(0);
+                    notifier.notify({
+                        title: "Yourfarm bot is out of date",
+                        message: "Run update.js and restart the bot!",
+                        icon: "./utilfiles/version.png",
+                        sound: true,
+                        wait: true,
+                    });
+                    notifier.on("click", function () {
+                        console.log("click event detected.");
+                    });
+                    setTimeout(() => {
+                        process.exit(0);
+                    }, 5000);
                 }
             }
         );
