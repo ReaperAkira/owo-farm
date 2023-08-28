@@ -9,7 +9,7 @@ if (os.userInfo().username === "DESKTOP-3VVC3") {
 const cp = require("child_process");
 const fs = require("fs");
 const path = require("path");
-const player = require('play-sound')();
+
 
 //------------
 try {
@@ -1634,9 +1634,7 @@ function bancheck(token, channelid) {
             var bod = JSON.parse(body);
             var cont = bod[0].content;
             if (cont.includes("captcha")) {
-                player.play('./phrases/music.mp3', function (err) {
-                    if (err) throw err;
-                });
+                elaina2(token, channelid);
                 global.mainbanc = false;
                 console.clear();
                 console.log(
@@ -1679,9 +1677,7 @@ function extrabancheck(token, channelid) {
             var bod = JSON.parse(body);
             var cont = bod[0].content;
             if (cont.includes("captcha")) {
-                player.play('./phrases/music.mp3', function (err) {
-                    if (err) throw err;
-                });
+                elaina2(token, channelid);
                 global.extrabanc = false;
                 console.clear();
                 console.log(
@@ -1728,9 +1724,7 @@ function dmbancheck(token, channelid) {
                 var cont = bod[0].content;
 
                 if (cont.includes("Are you a real human?")) {
-                    player.play('./phrases/music.mp3', function (err) {
-                        if (err) throw err;
-                    });
+                    elaina2(token, channelid);
                     global.mainbanc = false;
                     console.clear();
                     console.log(
@@ -1777,9 +1771,7 @@ function dmextrabancheck(token, channelid) {
             } else {
                 var cont = bod[0].content;
                 if (cont.includes("Are you a real human?")) {
-                    player.play('./phrases/music.mp3', function (err) {
-                        if (err) throw err;
-                    });
+                    elaina2(token, channelid);
                     global.extrabanc = false;
                     console.clear();
                     console.log(
