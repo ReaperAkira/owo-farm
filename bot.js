@@ -2330,7 +2330,7 @@ async function getquests(token, channelid, tokentype) {
                 channelid +
                 "/messages",
             json: {
-                content: "owo quest",
+                content: settings.prefix + "quest",
                 nonce: nonce(),
                 tts: false,
                 flags: 0,
