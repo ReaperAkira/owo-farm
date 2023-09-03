@@ -499,7 +499,7 @@ setInterval(() => {
                 if (settings.inventory.inventorycheck == "true") {
                     setTimeout(() => {
                         checkinv(maintoken, mainchannelid, "Main Token");
-                    }, 2500);
+                    }, 1000);
                 }
             }, timehunt)
         }
@@ -508,7 +508,7 @@ setInterval(() => {
         if (global.mainbanc) {
             setTimeout(() => {
                 battle(maintoken, timebattle, "Main Token", mainchannelid);
-            }, timebattle + 1500);
+            }, timebattle + 5000);
         }
     }
 }, timedelay.huntandbattle * 1000);
@@ -532,16 +532,14 @@ if (global.etoken) {
             logdmextrabancheck(extratoken, owodmextrachannelid);
         }
         if (settings.hunt == "true") {
-            if (global.extrabanc) {
-                setTimeout(() => {
-                    hunt(extratoken, timehunt, "Extra Token", extrachannelid);
-                    if (settings.inventory.inventorycheck == "true") {
-                        setTimeout(() => {
-                            checkinv(extratoken, extrachannelid, "Extra Token");
-                        }, 2500);
-                    } //E <3
-                }, timehunt)
-            };
+            setTimeout(() => {
+                hunt(extratoken, timehunt, "Extra Token", extrachannelid);
+                if (settings.inventory.inventorycheck == "true") {
+                    setTimeout(() => {
+                        checkinv(extratoken, extrachannelid, "Extra Token");
+                    }, 1000);
+                } //E <3
+            }, timehunt)
         }
         if (settings.battle == "true") {
                 setTimeout(() => {
@@ -552,7 +550,7 @@ if (global.etoken) {
                         "Extra Token",
                         extrachannelid
                 );
-            }, timebattle + 1500);
+            }, timebattle + 5000);
         }
     }, timedelay.huntandbattle * 1000);
 }
