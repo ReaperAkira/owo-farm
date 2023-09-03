@@ -1,6 +1,9 @@
-6 28 15 26 15
+6 28 15 26 15<br>
+Tutorial needed? <a href="https://youtu.be/sso05qx8Hac">Click Here</a><br>
+Tutorial 2 <a href="https://www.youtube.com/watch?v=tiSd99NEhb4">Click Here</a> (Thanks Hiếu LoneLy)
+
 <h1 align="center">OwO Farm Bot V1.0.3 </h1>
-<h2 align="center">Goal: <a href="https://github.com/Mid0aria/owofarmbot/stargazers"><img src="https://img.shields.io/github/stars/Mid0aria/owofarmbot" /></a> / 50</h2>
+<h2 align="center">Goal: <a href="https://github.com/Mid0aria/owofarmbot/stargazers"><img src="https://img.shields.io/github/stars/Mid0aria/owofarmbot" /></a> / 100</h2>
 
 <p align="center">
 ⭐⭐⭐ You can also give this repository a star to show more people and they can use this repository<br>
@@ -21,6 +24,8 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
 [📡・Socket Client](#socket-client)<br>
 [🔗・Required Links](#required-links)<br>
 [🎈・Usage](#usage)<br>
+[🥰・Thanks for contribution](#thanks-for-contribution)<br>
+
 
 ## ❗・Important
 
@@ -32,19 +37,22 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
 -   Auto Hunt
 -   Auto Battle
 -   Inventory Check
-    -   auto gem use (beta)
-    -   auto lootbox use
-    -   auto fabled lootbox use
-    -   auto crate use
-    -   auto eventbox use (like anniversary present or valentine's day)
+    -   Auto Gem Use (beta)
+    -   Auto Lootbox Use
+    -   Auto Fabled Lootbox Use
+    -   Auto Crate Use
+    -   Auto Eventbox Use (like anniversary present or valentine's day)
 -   Auto Gamble
-    -   auto coinflip
-    -   auto slots
--   Auto animals sell or sacrifice all,
--   Auto upgrade autohunt
+    -   Auto Coinflip
+    -   Auto Slots
+-   Auto Animals Sell OR Sacrifice,
+-   Auto Upgrade Autohunt
 -   Auto Pray
--   Auto quest   
--   Captcha(Ban) Protection v0.1.2 (beta)
+-   Auto CheckList (beta)
+    -   Auto Quest
+    -   Auto Daily
+    -   Auto Cookie
+-   Captcha(Ban) Protection v0.1.8 (beta)
 -   Discord-RPC
 -   **Extra Token**
     -   All Main Token Features
@@ -55,17 +63,12 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
 ```
 {
     "settings": {
-      "prefix":               "owo",
-      "owo":                  "true or false",
-      "pray":                 "true or false",
-      "curse":                "true or false",
-      "hunt":                 "true or false",
-      "battle":               "true or false",
-      "banbypass":            "true or false",
-      "autoquest":            "true or false",
-      "extratoken":           "true or false",
-      "randommess":           "true or false",
-      "discordrpc":           "true or false",
+        "huntandbattle": "", true or false
+        "banbypass": "", true or false
+        "discordrpc": "", true or false
+        "pray": "", true or false
+        "extratoken": "", true or false
+        "autoquest": "", true or false
         "inventory": {
             "inventorycheck": "", true or false
             "gemcheck": "", true or false
@@ -92,7 +95,7 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
                 "fabled": "", true or false
                 "special": "", true or false
                 "hidden": "" true or false
-            }            
+            }
         },
         "upgradeautohunt": {
             "enable": "", true or false
@@ -121,27 +124,11 @@ Do you want new feature? <a href ="https://github.com/Mid0aria/owofarmbot/issues
         "userid":"", extra token user id
         "channelid":"", channel id for extra token
         "owodmchannelid":"" extra token owo bot dm channel id
-    },
-    "timedelay": { 
-    "   (▀̿Ĺ̯▀̿ ̿)"               :"sec",
-        "owo"                 :20,
-        "huntandbattle"       :20,
-        "coinflip"            :20,
-        "slots"               :23,
-    "   ヾ(⌐■_■)♪∐"           :"min",
-        "pray"                :5.5,
-        "curse"               :5.5,
-        "animals"             :10,
-        "upgradeautohunt"     :10,
-        "autoclose"           :"true or false",
-        "timeautoclose"       :10   
-    
     }
 }
 
 
 ```
-
 
 ## 💎・Get Token
 
@@ -168,10 +155,14 @@ m)
 ![](https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/images/rpc.jpg)
 
 ## ⚠️・Captcha Alert
+!!! If you want the captcha alert to work properly, turn off do not disturb
 
 ![](https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/images/captchaalert.png)
 
+
+
 ## 📡・Socket Client
+
 ![](https://raw.githubusercontent.com/Mid0aria/owofarmbot/main/images/socketclient.png)
 
 ## 🔗・Required Links
@@ -195,3 +186,8 @@ m)
 ```bash
 > run run.bat
 ```
+
+## 🥰・Thanks for contribution
+VihaanReddyM <a href="https://github.com/VihaanReddyM">(Github)</a><br>
+Hiếu LoneLy <a href="https://www.youtube.com/watch?v=tiSd99NEhb4">(Youtube)</a>
+
